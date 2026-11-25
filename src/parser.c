@@ -64,20 +64,19 @@ void initialize_buffers(void)
 		puts("Invalid relocations array");
 		exit(1);
 	}
-	for (int i = 0; i < NUM_SEGS_PER_FILE + 1; i++)
+	for (int i = 0; i < NUM_SEGS_PER_FILE; i++)
 		segments[i] = calloc(SEGMENT_BUFFER_SIZE, sizeof(char));
 	for (int i = 0; i < MAX_NUM_SYMS; i++)
 		symbols[i] = calloc(SYMS_BUFFER_SIZE, sizeof(char));
 	for (int i = 0; i < MAX_NUM_RELS; i++)
 		relocations[i] = calloc(RELS_BUFFER_SIZE, sizeof(char));
-	// NULL-terminate the array-carrying array
-	segments[NUM_SEGS_PER_FILE] = NULL;
 }
 
 void free_buffers(void)
 {
 	free(input_buffer);
 	free(output_buffer);
+	free(data);
 	for (int i = 0; i < NUM_SEGS_PER_FILE + 1; i++)
 		free(segments[i]);
 	for (int i = 0; i < MAX_NUM_SYMS; i++)

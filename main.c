@@ -54,7 +54,6 @@ int main(int argc, char **argv)
 	for (int i = 0; i < argc - 2; i++) {
 		process_magic(input_files[i]);
 		// Contains our meta data (no. segs, syms, relos)
-		meta[i] = (int *)calloc(argc - 2, sizeof(int));
 		meta[i] = process_metadata(input_files[i], output);
 		if (*meta == NULL)
 			return 1;
