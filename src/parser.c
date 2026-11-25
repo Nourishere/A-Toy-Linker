@@ -7,21 +7,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define NOSEGS 0
-#define NOSYMS 1
-#define NORELS 2
-
-#define NUM_SEGS_PER_FILE 3
-#define MAX_NUM_SYMS 64
-#define MAX_NUM_RELS (NUM_SEGS_PER_FILE + MAX_NUM_SYMS)
-
-#define INPUT_BUFFER_SIZE 1024
-#define OUTPUT_BUFFER_SIZE 1024
-#define SEGMENT_BUFFER_SIZE 1024
-#define SYMS_BUFFER_SIZE 1024
-#define RELS_BUFFER_SIZE 1024
-#define DATA_SIZE 1024
-
 static const char *no[3] = { "Number of segments: ", "Number of symbols: ",
 	"Number of relocations: "
 };
