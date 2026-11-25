@@ -1,3 +1,4 @@
 *.txt
+*.o
 link
 compile_commands.json
