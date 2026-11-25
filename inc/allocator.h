@@ -13,4 +13,11 @@
 #ifndef __ALLOCATOR_H
 #define __ALLOCATOR_H
 
+#include <stdio.h>
+
+int initialize_segments_list(void);
+void set_file_allocation_data(int *meta, char *file_name);
+int clean_segments_list(void);
+void allocate(FILE * obj);
+
 #endif				//      __ALLOCATOR_H
