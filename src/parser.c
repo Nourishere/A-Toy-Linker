@@ -23,7 +23,7 @@ char **relocations;
 /*
  * An array containing the data of each segment
  */
-uint32_t * data;
+uint32_t *data;
 
 static char *input_buffer;
 static char *output_buffer;
@@ -35,7 +35,7 @@ void initialize_buffers(void)
 	segments = (char **)calloc(NUM_SEGS_PER_FILE + 1, sizeof(char *));
 	symbols = (char **)calloc(MAX_NUM_SYMS + 1, sizeof(char *));
 	relocations = (char **)calloc(MAX_NUM_RELS + 1, sizeof(char *));
-	data = (uint32_t *)calloc(DATA_SIZE, sizeof(uint32_t));
+	data = (uint32_t *) calloc(DATA_SIZE, sizeof(uint32_t));
 
 	if (!segments) {
 		puts("Invalid segments array");
@@ -190,7 +190,9 @@ void process_symbols(int *meta, FILE *input, FILE *output)
 
 			// Write to the symbols array
 			int sym_index = index_buffer(j, symbols[i]);
-			strncpy(&symbols[i][sym_index], &input_buffer[token_index], strlen(&input_buffer[token_index]));
+			strncpy(&symbols[i][sym_index],
+				&input_buffer[token_index],
+				strlen(&input_buffer[token_index]));
 		}
 		fwrite("\n", 1, 1, output);
 	}
@@ -241,7 +243,9 @@ void process_rels(int *meta, FILE *input, FILE *output)
 			}
 			// Write to the relocations array
 			int rels_index = index_buffer(j, relocations[i]);
-			strncpy(&relocations[i][rels_index], &input_buffer[token_index], strlen(&input_buffer[token_index]));
+			strncpy(&relocations[i][rels_index],
+				&input_buffer[token_index],
+				strlen(&input_buffer[token_index]));
 		}
 		fwrite("\n", 1, 1, output);
 	}
@@ -255,8 +259,9 @@ void process_data(int *meta, FILE *input, FILE *output)
 		process_line(input, input_buffer);
 		fwrite(&segments[i][0], 1, strlen(&segments[i][0]), output);
 		fwrite(": ", 1, 2, output);
-		uint32_t __data = (uint32_t)strtoul(&input_buffer[0], NULL, 16);
-		fwrite(&__data, sizeof(__data), 1, output);
+		uint32_t __data =
+		    (uint32_t) strtoul(&input_buffer[0], NULL, 16);
+		fwrite(&input_buffer[0], 1, strlen(&input_buffer[0]), output);
 
 		// Write the data to the data array
 		data[i] = __data;
